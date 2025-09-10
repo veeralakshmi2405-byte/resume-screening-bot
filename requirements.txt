@@ -1,5 +1,7 @@
 streamlit
 PyPDF2
 python-docx
-scikit-learn
 nltk
+scikit-learn
+pdf2image
+pytesseract
