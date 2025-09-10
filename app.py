@@ -33,7 +33,7 @@ job_description = st.text_area("Job Description", height=200)
 uploaded_file = st.file_uploader("Upload Resume (PDF/DOCX)", type=["pdf","docx"])
 
 if st.button("🔍 Check Match"):
-    if uploaded_file is None or job_description.strip()=="":
+    if uploaded_file is None or job_description.strip() == "":
         st.error("Please paste JD and upload a resume.")
     else:
         if uploaded_file.name.lower().endswith(".pdf"):
@@ -46,4 +46,8 @@ if st.button("🔍 Check Match"):
 
         vec = TfidfVectorizer()
         tfidf = vec.fit_transform([jd_clean, resume_clean])
-        score
+
+        # ✅ FIXED LINE
+        score = cosine_similarity(tfidf[0:1], tfidf[1:2])[0][0] * 100
+        st.success(f"✅ Match Score: {score:.2f}%")
+
